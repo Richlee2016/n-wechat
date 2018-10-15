@@ -4,6 +4,9 @@
   "description": "description",
   "author": "",
   "license": "MIT",
+  "standard": {
+    "parser": "babel-eslint"
+  },
   "scripts": {
     "format": "prettier --write \"**/*.ts\"",
     "start": "ts-node -r tsconfig-paths/register src/main.ts",
@@ -20,14 +23,18 @@
     "@nestjs/common": "^5.0.0",
     "@nestjs/core": "^5.0.0",
     "@nestjs/mongoose": "^5.2.2",
+    "@types/content-type": "^1.1.2",
     "@types/sha1": "^1.1.1",
+    "@types/xml2js": "^0.4.3",
+    "content-type": "^1.0.4",
     "fastify-formbody": "^2.0.0",
     "mongoose": "^5.3.2",
     "raw-body": "^2.3.3",
     "reflect-metadata": "^0.1.12",
     "rxjs": "^6.0.0",
     "sha1": "^1.1.1",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "xml2js": "^0.4.19"
   },
   "devDependencies": {
     "@nestjs/testing": "^5.0.0",
