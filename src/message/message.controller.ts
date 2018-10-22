@@ -1,17 +1,17 @@
-import { Post, Controller, Req, Query } from '@nestjs/common'
+import { Post, Controller, Body } from '@nestjs/common'
 import { MessageService } from './message.service'
-import * as getRawBody from 'raw-body'
-import contentType from 'content-type'
-@Controller('')
+import { CreateMessageDto } from './dto/message.dto'
+@Controller('Message')
 export class MessageController {
   constructor(private readonly Message: MessageService) {}
 
-  @Post('wechat-hear')
-  async root(@Query() query, @Req() req) {
-    const message = await getRawBody(req, {
-      length: req.headers['content-length'],
-      limit: '1mb'
-    })
-    await this.Message.HandleMessage(query, message)
+  @Post('CreateReply')
+  async createReply(@Body() createReplyDto: CreateMessageDto) {
+    console.log(createReplyDto);
+    // for (const key in createReplyDto) {
+    //     const el = createReplyDto[key];
+    //     if(key !==){};
+    // }
+    // await this.Message.CreateReply(createReplyDto)
   }
 }

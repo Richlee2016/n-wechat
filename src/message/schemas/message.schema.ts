@@ -1,9 +1,10 @@
 import * as mongoose from 'mongoose'
-
-export const TokenSchema = new mongoose.Schema({
-  name: String,
-  access_token: String,
-  expires_in: Number,
+const Mixed = mongoose.Schema.Types.Mixed
+export const MessageSchema = new mongoose.Schema({
+  MsgType: String,
+  ToUserName: String,
+  FromUserName: String,
+  Reply:Mixed,
   meta: {
     createAt: {
       type: Date,
@@ -16,7 +17,7 @@ export const TokenSchema = new mongoose.Schema({
   }
 })
 
-TokenSchema.pre('save', function(next) {
+MessageSchema.pre('save', function(next) {
   if (this.isNew) {
     this.meta.createAt = this.meta.updateAt = Date.now()
   } else {
