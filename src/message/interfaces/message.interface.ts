@@ -10,7 +10,7 @@ export interface MessagePost {
 export interface MessageXml {
   MsgType: string
   CreateTime?: string
-  Content?:string | MessageXml[]
+  Content?:string | Array<any>
   ToUserName?: string
   FromUserName?: string
   MediaId?: string
@@ -25,7 +25,7 @@ export interface MessageXml {
 //  schemas 参数
 export interface MessageSchema {
   MsgType: string
+  Content:string
   ToUserName?: string
-  FromUserName?: string
   Reply?: MessageXml
 }

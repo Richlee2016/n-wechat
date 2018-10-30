@@ -9,6 +9,7 @@ import { TokenSchema } from './schemas/token.schema'
     MongooseModule.forFeature([{ name: 't_token_table', schema: TokenSchema }])
   ],
   controllers: [TokenController],
-  providers: [TokenService]
+  providers: [TokenService],
+  exports:[TokenService]
 })
 export class TokenModule {}

@@ -4,14 +4,12 @@ import { CreateMessageDto } from './dto/message.dto'
 @Controller('Message')
 export class MessageController {
   constructor(private readonly Message: MessageService) {}
-
+  /**
+   * 创建回复
+   * @param createReplyDto 
+   */
   @Post('CreateReply')
   async createReply(@Body() createReplyDto: CreateMessageDto) {
-    console.log(createReplyDto);
-    // for (const key in createReplyDto) {
-    //     const el = createReplyDto[key];
-    //     if(key !==){};
-    // }
-    // await this.Message.CreateReply(createReplyDto)
+    await this.Message.CreateReply(createReplyDto)
   }
 }

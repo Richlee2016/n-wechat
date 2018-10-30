@@ -10,6 +10,7 @@ import * as xml2js from 'xml2js'
 var sha = require('sha1')
 // 配置文件
 import * as Config from '../config/index.config'
+import { ReplyDto } from './dto/message.dto'
 
 @Injectable()
 export class MessageService {
@@ -33,7 +34,7 @@ export class MessageService {
     } else {
       const msgRes: any = await this._parmsXml(message)
       const msgJson = this._formatMessage(msgRes.xml)
-      const reply = this._replay(msgJson)
+      const reply = await this._replay(msgJson)
       console.log(reply)
       return reply
     }
@@ -44,7 +45,7 @@ export class MessageService {
   /**
    * 创建回复
    */
-  public async CreateReply(Reply: MessageXml) {
+  public async CreateReply(Reply: MessageSchema) {
     try {
       const _reply = new this.ReplyModle(Reply)
       await _reply.save()
@@ -120,14 +121,19 @@ export class MessageService {
    *
    * DB 消息回复
    */
-  private _replay(message: MessageXml): string {
-    let replyMsg: MessageXml = {
-      MsgType: 'text',
-      Reply: {
-        Content: '很强'
-      }
-    }
+  private async _replay(message: MessageXml): Promise<string> {
+    let replyMsg: MessageSchema | undefined
     const { MsgType, ToUserName, FromUserName, Content, MediaId } = message
+    
+    replyMsg = await this.ReplyModle.findOne({ MsgType:MsgType, Content:Content }).exec()
+    if (!replyMsg) {
+      return ''
+    }
+
+    // 特定用户 回复(暂留)
+    if(replyMsg.ToUserName == FromUserName ){}
+
+
     const reply: MessageXml = Object.assign(replyMsg, {
       ToUserName: FromUserName,
       FromUserName: ToUserName

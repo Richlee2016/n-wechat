@@ -65,6 +65,10 @@ export class CreateMessageDto {
   @IsString()
   readonly Content: string //接收内容
 
+  @IsOptional()
+  @IsString()
+  readonly ToUserName: string //发送者
+
   @ValidateNested()
   @Type(() => ReplyDto)  //验证嵌套对象
   @IsNotEmpty()

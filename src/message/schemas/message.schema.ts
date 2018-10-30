@@ -2,9 +2,9 @@ import * as mongoose from 'mongoose'
 const Mixed = mongoose.Schema.Types.Mixed
 export const MessageSchema = new mongoose.Schema({
   MsgType: String,
+  Content: String,
   ToUserName: String,
-  FromUserName: String,
-  Reply:Mixed,
+  Reply: Mixed,
   meta: {
     createAt: {
       type: Date,
