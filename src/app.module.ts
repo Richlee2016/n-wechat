@@ -6,12 +6,14 @@ import { TokenModule } from './token/token.module'
 import { MessageModule } from './message/message.module'
 import { WechatModule } from './wechat/wechat.module';
 import { MatterModule } from './matter/matter.module';
+import { UserModule } from './user/user.module';
 @Module({
   imports: [
     WechatModule,//微信
     TokenModule,//token
     MessageModule,//消息
     MatterModule,//素材
+    UserModule,//用户
     MongooseModule.forRoot('mongodb://localhost:27017/wechat')
   ],
   controllers: [AppController],
